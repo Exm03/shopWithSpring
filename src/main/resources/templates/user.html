@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>My profile</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<div th:replace="layouts/header :: header"></div>
+
+<main class="container">
+  <h1>My profile</h1>
+  <form  method="post" action="/logout">
+    <button type="submit">Sign out</button>
+  </form>
+
+  <h2>Edit profile</h2>
+  <form method="post" action="">
+    <input type="text" name="email" placeholder="email">
+    <input type="text" name="password" placeholder="password">
+    <select>
+      <option value="Admin">Admin</option>
+      <option value="User">User</option>
+      <option value="Redactor">Redactor</option>
+    </select>
+    <button type="submit">Edit</button>
+  </form>
+</main>
+<div th:replace="layouts/footer :: footer"></div>
+</body>
+</html>

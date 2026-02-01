@@ -17,7 +17,9 @@
     <main class="container">
         <div class="items" th:if="${!items.isEmpty()}">
             <div th:each="el : ${items}">
-                <img th:src="${el.image}" th:alt="${el.title}">
+                <a th:href="'/item/' + ${el.id}">
+                    <img th:src="${el.image}" th:alt="${el.title}">
+                </a>
                 <h3 th:text="${el.title}"/>
                 <p th:text="${el.info}"/>
                 <span th:text="${el.price} +  '$'"/>

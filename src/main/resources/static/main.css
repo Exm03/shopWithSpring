@@ -136,3 +136,30 @@ h1 {
 .items > div image {
     background: white;
 }
+
+form input, form textarea {
+    width: 300px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    display: block;
+    margin-top: 20px;
+    resize: none;
+}
+
+form button, .edit-btn{
+    margin-top: 20px;
+    padding: 10px 25px;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    background: #cb5e49;
+    transition: background 0.5s ease;
+}
+
+form button:hover {
+    background: #964434;
+}
