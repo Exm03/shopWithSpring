@@ -2,8 +2,10 @@ package com.example.shop.controllers;
 
 
 import com.example.shop.models.Item;
+import com.example.shop.models.User;
 import com.example.shop.repo.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +21,13 @@ public class ItemController {
     }
 
     @PostMapping("/item/add")
-    public String store(@RequestParam String title,
-                        @RequestParam String image,
-                        @RequestParam String price,
-                        @RequestParam String info) {
-        Item item = new Item(title, info, image, Short.parseShort(price));
+    public String store(
+            @AuthenticationPrincipal User user,
+            @RequestParam String title,
+            @RequestParam String image,
+            @RequestParam String price,
+            @RequestParam String info) {
+        Item item = new Item(title, info, image, Short.parseShort(price), user);
         itemRepository.save(item);
         return "redirect:/";
     }

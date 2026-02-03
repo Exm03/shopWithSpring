@@ -1,12 +1,25 @@
-<header class="container" xmlns:th="http://www.thymeleaf.org" th:fragment="header">
+<header class="container" xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
+
   <span class="logo">itShop</span>
   <nav>
     <a href="/">Home page</a>
     <a href="/about-us">About us</a>
-    <a href="/item/add">Add product</a>
 
-    <a href="/login">Log in</a>
+
+    <span sec:authorize="isAnonymous()">
+      <a href="/login">Log in</a>
     <a href="/reg">Sign up</a>
+    </span>
+
+    <span class="logout-container" sec:authorize="isAuthenticated()">
+       <a href="/item/add">Add product</a>
+      <a href="/user">Profile</a>
+
+<!--      <form action="/logout" method="post" style="dsplay:inline">-->
+<!--        <button class="logout-btn" type="submit">Logout</button>-->
+<!--      </form>-->
+    </span>
 
   </nav>
 </header>

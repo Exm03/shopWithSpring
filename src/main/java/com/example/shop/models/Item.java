@@ -1,38 +1,49 @@
 package com.example.shop.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Item {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
-    private long Id;
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String title, info, image;
 
     private short price;
 
+
+    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
+
     public Item() {
     }
 
-    public Item(String title, String info, String image, short price) {
+    public Item(String title, String info, String image, short price, User user) {
         this.title = title;
         this.info = info;
         this.image = image;
         this.price = price;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getTitle() {

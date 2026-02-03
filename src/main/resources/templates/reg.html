@@ -6,11 +6,11 @@
     <link rel="stylesheet" th:href="@{/main.css}">
 </head>
 <body>
-<div th:replace="layouts/header :: header"></div>
+<div th:replace="~{layouts/header :: header}"></div>
 
 <main class="container">
     <h1>Registration</h1>
-    <form  method="post" action="/reg">
+    <form  method="post" th:action="@{/reg}">
         <input type="text" name="username" placeholder="input Login">
         <input type="email" name="email" placeholder="input email">
         <input type="password" name="password" placeholder="input password">
@@ -18,6 +18,6 @@
         <button type="submit">Sign up</button>
     </form>
 </main>
-<div th:replace="layouts/footer :: footer"></div>
+<div th:replace="~{layouts/footer :: footer}"></div>
 </body>
 </html>

@@ -1,17 +1,23 @@
 package com.example.shop.controllers;
 
+import com.example.shop.dto.UserUpdateDto;
 import com.example.shop.models.Role;
 import com.example.shop.models.User;
 import com.example.shop.repo.UserRepository;
+import com.example.shop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -21,6 +27,8 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/login")
     public String login() {
@@ -28,8 +36,22 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String user() {
+    public String user(Principal principal, Model model) {
+        String username = principal.getName();
+        User user = userRepository.findByUsername(username);
+
+        model.addAttribute("user", user);
+        model.addAttribute("roles", Role.values());
         return "user";
+    }
+
+    @PostMapping("/user")
+    public String updateUser(Principal principal,
+                             @ModelAttribute UserUpdateDto dto) {
+        User user = userService.getCurrentUser(principal);
+        userService.updateUser(user, dto);
+
+        return "redirect:/user";
     }
 
     @GetMapping("/reg")

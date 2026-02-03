@@ -6,16 +6,16 @@
     <link rel="stylesheet" th:href="@{/main.css}">
 </head>
 <body>
-<div th:replace="layouts/header :: header"></div>
+<div th:replace="~{layouts/header :: header}"></div>
 
 <main class="container">
     <h1>Authorization</h1>
-    <form  method="post" action="/login">
+    <form  method="post"  th:action="@{/login}">
         <input type="text" name="username" placeholder="input Login">
         <input type="password" name="password" placeholder="input password">
         <button type="submit">Sign in</button>
     </form>
 </main>
-<div th:replace="layouts/footer :: footer"></div>
+<div th:replace="~{layouts/footer :: footer}"></div>
 </body>
 </html>

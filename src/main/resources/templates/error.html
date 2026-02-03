@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Page about us</title>
-    <link rel="stylesheet" th:href="@{/main.css}">
+  <meta charset="UTF-8">
+  <title>Error 404</title>
+  <link rel="stylesheet" th:href="@{/main.css}">
 </head>
 <body>
 <div th:replace="~{layouts/header :: header}"></div>
+
 <main class="container">
-    <div class="block">
-        <h1>Page about us</h1>
-        <p th:text="'Hello, ' + ${name}"></p>
-    </div>
+  <h1>Error 404</h1>
+  <a href="/"> <p>Get back to  Home page </p></a>
 </main>
 <div th:replace="~{layouts/footer :: footer}"></div>
 </body>

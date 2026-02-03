@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title th:text="${item.title}"></title>
     <link rel="stylesheet" th:href="@{/main.css}">
 </head>
 <body>
-<div th:replace="layouts/header :: header"></div>
+<div th:replace="~{layouts/header :: header}"></div>
 
 
 <main class="container">
@@ -15,17 +15,19 @@
                 <img th:src="${item.image}" th:alt="${item.title}">
             <h3 th:text="${item.title}"/>
             <p th:text="${item.info}"/>
+            <br>
+            <p>Author: <b th:text="${item.user.username}"/> </p>
             <span th:text="${item.price} +  '$'"/>
         </div>
     </div>
 
-    <a th:href="'/item/' + ${item.id} + '/update'" class="edit-btn">Edit</a>
-    <form method="post" th:action="'/item/' + ${item.id} + '/delete'">
+    <a th:href="'/item/' + ${item.id} + '/update'" class="edit-btn" sec:authorize="hasAuthority('ADMIN') || hasAuthority('REDACTOR')">Edit</a>
+    <form method="post" th:action="@{'/item/' + ${item.id} + '/delete'}" sec:authorize="hasAuthority('ADMIN')">
         <button type="submit">
             Delete
         </button>
     </form>
 </main>
-<div th:replace="layouts/footer :: footer"></div>
+<div th:replace="~{layouts/footer :: footer}"></div>
 </body>
 </html>

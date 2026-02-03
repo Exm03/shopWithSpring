@@ -25,6 +25,7 @@ a {
 
 a:hover {
     color: #1f1f1f;
+    text-decoration: underline;
 }
 
 .container {
@@ -162,4 +163,22 @@ form button, .edit-btn{
 
 form button:hover {
     background: #964434;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.logout-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 30px;
+}
+
+.logout-btn {
+    margin-top: 0px;
 }

@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{/main.css}">
 </head>
 <body>
-    <div th:replace="layouts/header :: header"></div>
+<div th:replace="~{layouts/header :: header}"></div>
 
     <div class="presentation">
         <img src="	https://itproger.com/img/main_page/computer.svg">
@@ -29,6 +29,6 @@
             <p>No products</p>
         </div>
     </main>
-   <div th:replace="layouts/footer :: footer"></div>
+<div th:replace="~{layouts/footer :: footer}"></div>
 </body>
 </html>
